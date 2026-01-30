@@ -14,7 +14,7 @@ deps = [
     'colored>=1.3.93',
     'pygtrie>=2.3.3',
     're-wx>=0.0.9',
-    'typing-extensions==3.10.0.2',
+    'typing-extensions>=3.10.0.2',
     'wxpython>=4.1.0',
     "dataclasses>=0.8;python_version<'3.7'",
 ]
@@ -72,3 +72,4 @@ With the decorator attached, run your program and the GUI will now appear!
 
 Checkout the full documentation, instructions, and source on `Github <https://github.com/chriskiehl/Gooey>`_'''
 )
+
