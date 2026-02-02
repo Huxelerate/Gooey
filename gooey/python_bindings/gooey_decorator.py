@@ -21,12 +21,28 @@ def Gooey(f=None, **gkwargs):
 
     @wraps(f)
     def inner(*args, **kwargs):
-        parser_handler = choose_hander(params, gkwargs.get('cli', sys.argv))
-        # monkey patch parser
-        ArgumentParser.original_parse_args = ArgumentParser.parse_args
-        ArgumentParser.parse_args = parser_handler
-        # return the wrapped, now monkey-patched, user function
-        # to be later invoked
+        # Determine the CLI args to inspect. Default to sys.argv.
+        cli = gkwargs.get('cli', sys.argv)
+
+        # Only activate Gooey when no command line arguments were passed
+        # (i.e., only the program name is present). If `cli` is not a
+        # list/tuple, conservatively skip activation.
+        activate = False
+        if isinstance(cli, (list, tuple)):
+            # len == 1 -> only program name present
+            if len(cli) <= 1:
+                activate = True
+            # honor explicit ignore flag to skip Gooey
+            if IGNORE_COMMAND in cli:
+                activate = False
+
+        if activate:
+            parser_handler = choose_hander(params, cli)
+            # monkey patch parser
+            ArgumentParser.original_parse_args = ArgumentParser.parse_args
+            ArgumentParser.parse_args = parser_handler
+
+        # return the wrapped function (monkey-patched only when activated)
         return f(*args, **kwargs)
 
     def thunk(func):
