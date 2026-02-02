@@ -51,7 +51,7 @@ def gooey_params(**kwargs) -> GooeyParams:
     Builds the full GooeyParams object from an arbitrary subset of supplied values
     """
     return GooeyParams(**{  # type: ignore
-        'show_preview_warning': kwargs.get('show_preview_warning', True),
+        'show_preview_warning': kwargs.get('show_preview_warning', False),
         'language': kwargs.get('language', 'english'),
         'target': kwargs.get('target'),
 
