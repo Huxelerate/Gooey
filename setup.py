@@ -72,4 +72,3 @@ With the decorator attached, run your program and the GUI will now appear!
 
 Checkout the full documentation, instructions, and source on `Github <https://github.com/chriskiehl/Gooey>`_'''
 )
-
