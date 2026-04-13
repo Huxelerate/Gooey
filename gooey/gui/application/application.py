@@ -167,7 +167,7 @@ class RGooey(Component):
         """
         state = self.fullState()
         if state['clear_before_run']:
-            self.consoleRef.instance.Clear()
+            self.consoleRef.instance.clear()
         self.set_state(s.consoleScreen(_, state))
         self.clientRunner.run(s.buildInvocationCmd(state))
         self.timer.start()
